@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 # ================================
 # KONFIGURASI HALAMAN
@@ -16,7 +17,13 @@ st.set_page_config(
 # ================================
 @st.cache_resource
 def load_model():
-    return joblib.load("model_stok.pkl")  # pastikan file ada
+    model_path = "best_model.joblib"
+
+    if not os.path.exists(model_path):
+        st.error(f"❌ Model tidak ditemukan: {model_path}")
+        st.stop()
+
+    return joblib.load(model_path)
 
 model = load_model()
 
