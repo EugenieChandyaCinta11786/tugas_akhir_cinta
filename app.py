@@ -17,7 +17,7 @@ st.set_page_config(
 # ================================
 @st.cache_resource
 def load_model():
-    model_path = "best_model.joblib"
+    model_path = "model_pipeline_fix.joblib"
 
     if not os.path.exists(model_path):
         st.error(f"❌ Model tidak ditemukan: {model_path}")
